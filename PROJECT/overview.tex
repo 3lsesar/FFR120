@@ -1,0 +1,287 @@
+% ****** Start of file template-FFR120-FYM120-blindtext.tex ******
+%
+% use on Overleaf!!!!
+%
+\documentclass[%
+ reprint,
+ amsmath,amssymb,
+ aps,
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{hyperref}% add hypertext capabilities
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+\usepackage{xcolor}
+
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{ltablex}
+
+\begin{document}
+
+\title{[L] Clogging in Granular Flor through a Bottleneck}% Force line breaks with \\
+
+\author{Marnick Huisman [}
+\author{César Mejía ]}
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+\begin{abstract} %%% DO NOT CHANGE!
+%%% - B1 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B1 - and - E1 - must not appear in the final report 
+ \noindent This project investigates clogging phenomena in granular flows through a bottleneck. We aim to quantify how the probability of clogging and the statistics of particle discharge depend on the orifice diameter, grain size distribution, and particle-wall friction. We will explore a combination of molecular dynamics simulations and cellular automata models to capture both realistic contact interactions and rapid parameter sweeps. The study will provide insights into the mechanisms behind the formation of archs and flow interruptions in granular materials.
+ 
+%%% - E1 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{description} %%% DO NOT CHANGE!
+\item[Project Topic] %%% DO NOT CHANGE!
+{Granular Matter} %CHANGE accordingly
+\item[Teaching Assistant] %%% DO NOT CHANGE!
+{Agnese Callegari} % CHANGE accordingly
+\end{description} %%% DO NOT CHANGE!
+\end{abstract}
+
+\maketitle
+
+
+
+
+\section{\label{sec:intro}Introduction} %%% DO NOT CHANGE!
+
+%%% - B2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B2 - and - E2 - must not appear in the final report 
+\noindent Granular flows through constrictions occur in many industrial and natural processes, such as hopper discharges, pedestrian evacuations, granular silo flows or even sand clocks. A key feature of these systems is the formation of arches that block flow, known as clogging. Understanding the statistical properties of clogging, including how it depends on particle and system parameters, is important for optimizing material handling and predicting jamming events. Previous work has shown that orifice size, particle size distribution, and frictional properties significantly affect clogging probability. In this project, we will try to model these effects using computational methods and look at the results to see what patterns appear. Some simpler models might not capture all the details, but they can still give a useful idea of how clogging behaves in different situations. The goal is to get a better sense of which parameters are most relevant for clogging and how they interact.
+
+%%% - E2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\label{sec:overview}Overview} %%% DO NOT CHANGE!
+
+%%% - B3 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B3 - and - E3 - must not appear in the final report 
+
+
+\noindent To study clogging, several computational methods are available. \textbf{Table~\ref{tab:methodsoverview}} summarizes three relevant approaches, detailing their use case, key features, and suitability for the project.\\
+
+\begin{table*}[htb]
+\centering
+\caption{\textbf{Overview of Simulation Methods/Models for Granular Flow Clogging.}}
+\label{tab:methodsoverview}
+
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Method / Model} &
+    \textbf{Use Case Scenario} &
+    \textbf{Key Features (Summary)} &
+    \textbf{Suitable for the Project?} \\
+    \hline
+    
+    \raisebox{0pt}[3em][3em]{\shortstack[c]{Molecular Dynamics /\\Particle Simulations}} &
+    \shortstack[c]{Simulating individual grains in\\hopper or bottleneck flows} &
+    \shortstack[c]{\vspace{5pt}\\Resolves particle contacts, friction\\and normal forces, realistic arch\\formation; computationally intensive\\for large systems} &
+    \raisebox{0pt}[3em][3em]{\shortstack[c]{\textbf{Yes} — main method to\\reproduce realistic\\clogging dynamics.}}\\
+    \hline
+    
+    \raisebox{0pt}[3em][3em]{\shortstack[c]{Cellular Automata /\\Rule-based CA}} &
+    \shortstack[c]{Rapid exploration of parameter\\space using simplified\\grid-based dynamics} &
+    \shortstack[c]{\vspace{5pt}\\Computationally cheap, easy to\\visualize clog/no-clog behavior;\\lacks force realism and detailed\\contact modelling} &
+    \raisebox{0pt}[3em][3em]{\shortstack[c]{\textbf{Yes} — complementary method\\for wide parameter sweeps.}} \\
+    \hline
+    
+    \raisebox{0pt}[3em][3em]{\shortstack[c]{Brownian Dynamics /\\Stochastic Integration}} &
+    \shortstack[c]{Addition of stochastic driving or\\thermal-like perturbations} &
+    \shortstack[c]{\vspace{5pt}\\Captures fluctuations, simple to\\implement; does not model contact\\mechanics accurately} &
+    \raisebox{0pt}[3em][3em]{\shortstack[c]{\textbf{Optional} — only if exploring\\noise-induced effects.}} \\
+    \hline
+    
+    \end{tabular}
+\end{table*}
+
+
+
+
+
+
+\noindent The chosen and combined application of these methods will allow the study of the clogging problem, ranging from detailed simulation of individual particles to the efficient exploration of the parameter space.\\
+
+\bigskip
+
+\noindent
+\textbf{Method 1: Molecular Dynamics (Particle Simulation)}
+
+\noindent The Molecular Dynamics (MD) method, or specifically the Discrete Element Method (DEM) in the granular context, is the primary approach for reproducing realistic clogging dynamics in hopper or bottleneck flows. Its main use case is simulating the motion and interaction of individual grains in these systems. This method resolves direct particle contacts, which is crucial for capturing the formation of stable arches that lead to clogging. While it is computationally intensive, which can limit system size or duration, it is the most suitable method for obtaining high-fidelity results comparable to real experiments on the mechanics of clogging, such as those discussed in literature \cite{prenom2017find}. This makes it the main tool for the project.\\
+
+\bigskip
+
+\noindent
+\textbf{Method 2: Cellular Automata (Rule-based)}
+
+\noindent The Cellular Automata (CA) approach, particularly rule-based variants, provides a computationally inexpensive alternative to detailed particle simulations. Its use case involves the rapid exploration of the parameter space using simplified lattice flow models. It is a grid-based model where cell states update based on local rules, allowing for very fast simulation and clear visual outputs of flow and clogging patterns. Its main drawback is the lack of mechanical detail, as it does not resolve real contact forces. However, it is an excellent complementary method for performing broad parameter sweeps to quickly identify regions of interest before resorting to more costly MD simulations.\\
+
+\bigskip
+
+\noindent
+\textbf{Method 3: Brownian Dynamics / Stochastic Integration}
+
+\noindent Brownian Dynamics (BD), or the inclusion of Stochastic Integration in the equations of motion, is used to incorporate the effects of randomness and fluctuations. Its use case is the optional addition of stochastic noise to particle motion, modeling scenarios where small external vibrations or inherent randomness might affect the stability of a clogging arch. This feature allows it to model fluctuations and potentially smooth highly irregular flow behavior. The method is considered optional because, while it captures noise effects, the stochastic force must be carefully calibrated to avoid inaccurate representation of the granular contact mechanics. It may be used if the project requires the study of how kinetic or external noise influences clogging frequency and time.\\
+%%% - E3 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{\label{sec:method}Method} %%% DO NOT CHANGE!
+%%% - B4 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B4 - and - E4 - must not appear in the final report 
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{Fig1_placeholder.pdf}
+    \caption{{\bf Method employed (change this text according to your project).} Write some explanatory text for the figure. Make sure that the figure is referenced in the text. The caption should be such that, together with the figure, allows the reader to understand the concepts in the figure itself. 
+    \textcolor{blue}{\bf A figure describing the method/model is MANDATORY.} Missing to include a figure causes a {\bf deduction} (-3  points). 
+    } 
+    \label{fig:selectedmethod}
+\end{figure*}
+
+\noindent
+\fbox{\parbox[t][][t]{\columnwidth}{
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{8}} out of \textbf{44}
+
+Provide here the details of the method you have chosen for the project. 
+You should explain and provide enough detail such that your results can be reproduced following your method. 
+Compose a figure that contains / describes your method (mandatory). Refer to the figure (Fig.~\ref{fig:selectedmethod}) when describing the method in the text. 
+You can add a second figure if you believe it is necessary. 
+}}
+\textcolor{cyan}{\lipsum[10-15]}
+%%% - E4 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\label{sec:results}Results and Discussion} %%% DO NOT CHANGE!
+
+%%% - B5 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B5 - and - E5 - must not appear in the final report 
+\noindent
+\fbox{\parbox[t][][t]{\columnwidth}{
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{8}} out of \textbf{44}
+
+Here report and discuss the results of the project. 
+
+Remember to organize your results properly.  
+
+Reference your figures in the discussion. Example: Fig.~\ref{fig:res1}. 
+}}
+
+\textcolor{cyan}{\lipsum[1-2]}\\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{Fig3.pdf}
+    \caption{{\bf Title Figure.} Write some explanatory text for the figure. Make sure that the figure is referenced in the text. The caption should be such that, together with the figure, allows the reader to understand the concepts in the figure itself.} 
+    \label{fig:res1}
+\end{figure}
+
+\textcolor{cyan}{\lipsum[8-9]} 
+
+At some point in the discussion, Reference Fig.~\ref{fig:res2}. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\columnwidth]{Fig2.pdf}
+    \caption{{\bf Title Figure.} Write some explanatory text for the figure. Make sure that the figure is referenced in the text. The caption should be such that, together with the figure, allows the reader to understand the concepts in the figure itself.} 
+    \label{fig:res2}
+\end{figure}
+
+\textcolor{cyan}{\lipsum[10-11]} 
+%%% - E5 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{\label{sec:conclusion}Conclusions and Outlook} %%% DO NOT CHANGE!
+
+%%% - B6 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B6 - and - E6 - must not appear in the final report 
+\noindent
+\fbox{\parbox[t][][t]{\columnwidth}{
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{4}} out of \textbf{44}
+
+Here conclusions and outlook. 
+}}
+
+\textcolor{cyan}{\lipsum[1]}
+
+\textcolor{cyan}{Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  }
+%%% - E6 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\section{\label{sec:Contribution}Contributions} %%% DO NOT CHANGE!
+
+%%% - B7 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B7 - and - E7 - must not appear in the final report 
+\noindent
+\fbox{\parbox[t][][t]{\columnwidth}{
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{1}} out of \textbf{44}
+
+Mandatory in all cases (also in the case of 1-person team). 
+
+Add some text. See a possible example text below.
+}}
+Example: A.B. and C.D. conceived and implemented ... (adapt). E.F., G.H., contributed to .... etc etc. All authors ... (adapt).
+%%% - E7 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{\label{sec:COI}Conflict of Interest} %%% DO NOT CHANGE!
+
+%%% - B8 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B8 - and - E8 - must not appear in the final report 
+\noindent
+\fbox{\parbox[b][][t]{\columnwidth}{
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{1}} out of \textbf{44}
+
+Add some text. See the the following Note for a clarification.
+}}
+
+{{\bf Note:} A conflict of interest can also be known as {\emph competing interest}. A conflict of interest can occur when you, or your employer, or sponsor have a financial, commercial, legal, or professional relationship with other organizations, or with the people working with them, that could influence your research.
+For example check here:} \href{https://authorservices.taylorandfrancis.com/editorial-policies/competing-interest/}{https://authorservices.taylorandfrancis.com/editorial-policies/competing-interest/}
+%%% - E8 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{\label{sec:datacode}Data and Code Availability} %%% DO NOT CHANGE!
+
+%%% - B9 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B9 - and - E9 - must not appear in the final report 
+\noindent
+\fbox{\parbox[b][][t]{\columnwidth}{
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{1}} out of \textbf{44}
+
+Add some text. See a possible text below.
+}}
+
+Data is available for download at ....  / can be accessed from ....
+
+All source code and examples are made publicly available at ... . The version used in this study is archived in ... with DOI ... 
+%%% - E9 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%% - B10 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Customize this part: text between - B10 - and - E10 - must not appear in the final report 
+\noindent
+\fbox{\parbox[b][][t]{\columnwidth}{
+Score for correct amount of relevant, peer reviewed {\bf References}: 
+\textbf{Points:} \fbox{\bf \textcolor{magenta}{5}} out of \textbf{44}
+}}
+
+
+\bibliography{biblio-FFR120-FYM119} %%% DO NOT CHANGE!
+% Produces the bibliography via BibTeX.
+
+\end{document}
+
+
+\end{document}

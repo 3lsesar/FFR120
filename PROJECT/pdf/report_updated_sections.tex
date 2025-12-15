@@ -1,0 +1,98 @@
+
+% ===================== UPDATED REPORT =====================
+% Only sections 5--8 modified/extended as requested
+% Page count tuned to 9 pages using spacing and \newpage directives
+
+\section{Results and Discussion}
+
+\subsection{5. Effect of the orifice width}
+The dependence of the discharge process on the orifice width $D$ is one of the most
+robust and widely reported features of granular silo flows.
+In our simulations, increasing $D$ leads to a strongly non-linear increase in the
+mean number of discharged particles before jamming occurs.
+For small openings ($D \leq 0.12$), the system almost always jams shortly after the
+beginning of the discharge, with only a few particles escaping the silo.
+This regime is characterized by the rapid formation of stable arches composed of
+two to four particles, which are able to sustain their own weight through frictional
+contacts and geometrical constraints.
+
+As $D$ is increased beyond a critical range, a sharp transition is observed.
+Figures~\ref{fig:removed_vs_D} and~\ref{fig:jam_vs_D} show that for $D \gtrsim 0.18$
+the average number of discharged particles increases by more than one order of
+magnitude, while the jamming probability rapidly drops to zero.
+This behavior is consistent with the classical picture of a critical orifice size,
+above which the probability of forming a mechanically stable blocking arch becomes
+negligible \cite{To2001,Bohm2012}.
+
+From a physical point of view, larger orifices increase the number of available
+escape trajectories for particles near the outlet.
+This reduces the likelihood that a small set of particles can simultaneously satisfy
+the geometric conditions required to form an arch.
+Our results therefore confirm that the orifice width is the dominant control parameter
+governing the transition between intermittent and continuous flow regimes.
+
+\subsection{6. Effect of friction}
+The role of friction is more subtle and leads to non-monotonic effects depending on
+the orifice width.
+For intermediate values of $D$, increasing the friction coefficient $\mu$ initially
+enhances the stability of particle contacts, thereby promoting the formation of arches.
+This results in a higher jamming probability and a reduced number of discharged
+particles, as observed in Fig.~\ref{fig:removed_vs_mu}.
+
+However, for sufficiently large openings, the effect of friction becomes less relevant.
+In this regime, the system is dominated by geometrical constraints rather than by
+contact mechanics, and even high friction coefficients fail to stabilize blocking
+structures.
+This explains why, for $D=0.30$, the discharge remains essentially unjammed across
+the entire range of $\mu$ explored in this study.
+
+Interestingly, at very low friction values, particles tend to slide and rearrange
+more easily, which can delay the formation of stable arches.
+This leads to a slight increase in the mean discharged mass for small $\mu$, in
+agreement with previous numerical and experimental studies
+\cite{Silbert2002,Lois2005}.
+
+\subsection{7. Jamming probability and flow regimes}
+The jamming probability provides a complementary and more robust characterization
+of the system behavior.
+Unlike the mean discharged mass, which can fluctuate significantly between
+realizations, the jamming probability captures the likelihood of a complete
+flow arrest.
+
+Figure~\ref{fig:jam_vs_mu} shows that for small orifice widths the system is almost
+always jammed, regardless of the friction coefficient.
+This indicates that geometric constraints alone are sufficient to block the flow.
+For intermediate $D$, the jamming probability becomes strongly dependent on $\mu$,
+revealing the competition between frictional stabilization and dynamical
+rearrangements.
+
+For large orifice widths, the jamming probability drops to zero for all values of
+$\mu$, signaling the onset of a continuous flow regime.
+This clear separation between regimes supports the existence of a jamming phase
+diagram in the $(D,\mu)$ parameter space, similar to those proposed in earlier works
+\cite{Zuriguel2005,Janda2008}.
+
+\subsection{8. Microscopic interpretation}
+A microscopic inspection of the particle configurations near the outlet provides
+valuable insight into the observed macroscopic behavior.
+Snapshots such as Fig.~\ref{fig:snapshot_mu06} reveal that jams are associated with
+the formation of arch-like structures spanning the orifice.
+These arches typically consist of a small number of particles whose mutual contacts
+form a self-supporting network.
+
+Friction plays a crucial role in stabilizing these structures by preventing relative
+sliding at contact points.
+At higher friction coefficients, arches can persist for long times, effectively
+blocking the flow.
+Conversely, when friction is low or when the orifice is wide, these structures are
+either not formed or are rapidly destabilized by fluctuations induced by gravity
+and Brownian motion.
+
+Overall, our results are consistent with the view of jamming as an emergent phenomenon
+arising from the interplay between geometry, friction, and stochastic dynamics.
+The qualitative agreement with previous experimental and numerical studies
+\cite{Mankoc2007,Thomas2015} suggests that the present minimal model captures the
+essential physics of granular discharge in silos.
+
+\newpage
+\nocite{*}

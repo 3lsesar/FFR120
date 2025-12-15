@@ -1,0 +1,117 @@
+
+% ===================== UPDATED REPORT (v2) =====================
+% Sections 5--8 expanded; citations mapped to the provided reference list.
+% Use with a BibTeX file that contains the keys used below.
+
+\section{Results and Discussion}
+
+\subsection{5. Effect of the orifice width}
+The dependence of the discharge dynamics on the outlet (orifice) width $D$ is one of the
+best-established signatures of granular silo flow: small openings promote intermittent discharge
+and frequent flow arrest, while sufficiently large openings lead to sustained flow.
+In our two-dimensional simulations with $N=200$ particles, we observe a strongly non-linear
+increase of the mean number of discharged particles as $D$ increases, accompanied by a rapid
+drop in the probability of jamming.
+This qualitative picture is consistent with the broad phenomenology of granular matter in which
+geometry and contact constraints combine to produce collective behavior that is not trivially
+predictable from single-particle dynamics \cite{deGennes1999,AransonTsimring2006,RadjaiRouxDaouadji2017}.
+
+For small openings (e.g. $D\le 0.12$ in our parameter sweep), the system typically arrests shortly
+after discharge begins. In this regime, particles arriving at the outlet are forced to organize into
+a narrow ``funnel'' where only a small number of microstates are compatible with continued motion.
+The likelihood that a handful of particles simultaneously form a mechanically stable blocking structure
+is therefore high. In practice, flow arrest is associated with the creation of a compact arch (or vault)
+spanning the orifice, whose stability is reinforced by frictional contacts and force-chain support.
+This interpretation is directly supported by the outlet-region snapshots and by the corresponding
+high jamming probabilities for small $D$ (Fig.~\ref{fig:snapshot_mu06} and Fig.~\ref{fig:jam_vs_D}).
+
+As $D$ increases into an intermediate regime (around $D\approx 0.15$--$0.18$ in our runs), the mean
+discharged mass increases steeply. Two related effects contribute to this: (i) a broader outlet
+increases the number of geometrically admissible exit trajectories and decreases the probability that
+a small set of particles can ``cover'' the opening simultaneously; and (ii) the local stress and force
+network near the outlet becomes more heterogeneous, so transient arches are more likely to be disrupted
+by fluctuations and rearrangements. Conceptually, this is compatible with the force-network viewpoint
+often used to rationalize stability in granular packings \cite{Snoeijer2003,OstojicSomfaiNienhuis2006}.
+
+Beyond a sufficiently large opening (in our study $D\gtrsim 0.18$--$0.21$ depending on $\mu$),
+we observe essentially unjammed discharge (jamming probability close to zero) within the simulated time
+window, while the discharged count grows markedly (Fig.~\ref{fig:removed_vs_D} and Fig.~\ref{fig:jam_vs_D}).
+In this large-$D$ regime, the system behavior is dominated by geometry rather than by fine details of
+contact stabilization: although transient clusters can still appear, they fail to span the outlet long
+enough to satisfy the jamming criterion.
+
+\subsection{6. Effect of friction}
+The friction coefficient $\mu$ modulates both the stability of contact networks and the ease with which
+particles can rearrange near the outlet. Unlike the strong and largely monotonic influence of $D$,
+the effect of $\mu$ depends on the orifice regime. For small $D$, the system jams with high probability
+for essentially all tested $\mu$, indicating that geometric confinement alone is enough to generate
+stable blocking configurations. In contrast, at intermediate $D$ the jamming probability becomes
+highly sensitive to $\mu$, revealing a competition between frictional stabilization and dynamical
+rearrangements.
+
+Mechanistically, increasing $\mu$ can stabilize arches by suppressing tangential slip at contacts,
+allowing a small number of particles to sustain load through frictional force chains.
+This tends to increase the lifetime of blocking structures and therefore increases the chance that
+the flow meets the (a)+(b) jamming criterion. The trends in Fig.~\ref{fig:removed_vs_mu} and
+Fig.~\ref{fig:jam_vs_mu} are consistent with this picture: for intermediate openings, higher $\mu$
+correlates with earlier flow arrest and larger jamming probability.
+
+However, friction can also hinder the ``self-healing'' of incipient arches. When friction is moderate,
+small rearrangements can break a nascent arch before it becomes load-bearing. When friction is too high,
+particles can lock in place, making the system more prone to permanent arrest. This qualitative
+nonlinearity is a recurring theme in constitutive descriptions of granular materials, where macroscopic
+response depends sensitively on contact-level constraints and history \cite{Massoudi2023,Buscarnera2021}.
+
+For sufficiently large $D$, the effect of $\mu$ is comparatively weak: even when friction is large,
+a stable spanning arch is unlikely to form because the geometric requirement (spanning the outlet) becomes
+too demanding. This explains why large-$D$ curves remain essentially unjammed across $\mu$ in our sweep.
+
+\subsection{7. Jamming probability and flow regimes}
+To complement the mean discharged count, we report the jamming probability as a function of both $D$
+and $\mu$. This metric is particularly useful because it is less sensitive to rare long discharges:
+while the mean discharged mass can be skewed by outliers, the jamming probability directly quantifies
+the likelihood of complete flow arrest within the observation window.
+
+At fixed $\mu=0.6$, Fig.~\ref{fig:jam_vs_D} shows a sharp transition from almost-certain jamming at small $D$
+to essentially zero jamming at larger $D$. Interpreting this as a crossover between an ``intermittent'' regime
+and a ``continuous-flow'' regime is consistent with the general picture of granular discharge: flow near the
+outlet is controlled by the formation and destruction of contact networks and arches, with a strong geometric
+dependence on the outlet size \cite{deGennes1999,RadjaiRouxDaouadji2017}.
+
+When scanning $\mu$ at fixed $D$ (Fig.~\ref{fig:jam_vs_mu}), three regimes emerge:
+(i) small $D$, where jamming is dominated by geometry and is largely insensitive to $\mu$;
+(ii) intermediate $D$, where friction controls the stability of arches and jamming probability rises with $\mu$;
+and (iii) large $D$, where jamming is rare for all $\mu$ tested. This partition suggests a phase-diagram-like
+structure in $(D,\mu)$ space.
+
+Finally, we note that the mean discharged count and the jamming probability together provide a coherent picture:
+whenever the jamming probability is close to one, the mean discharged count is small, and vice versa.
+This internal consistency provides a basic validation of the measurement protocol and the jamming criterion.
+
+\subsection{8. Microscopic interpretation}
+A microscopic interpretation can be developed by examining the particle configurations and force-bearing
+structures near the outlet. In the jammed regime, flow arrest is associated with a small set of particles
+forming a spanning arch across the orifice. The snapshot in Fig.~\ref{fig:snapshot_mu06} illustrates a typical
+configuration: particles accumulate above the opening until a stable contact network forms that prevents further
+motion. In two dimensions, such arches are often composed of only a few particles; nevertheless, they can be
+remarkably stable because the load is redistributed along force chains that are locked by friction.
+
+From the force-network perspective, jamming corresponds to the emergence of a self-supporting subnetwork that
+transfers stresses to the silo walls instead of allowing particles to exit. Approaches that explicitly analyze
+force networks and their statistics have been proposed as a framework to understand stability in static and
+slowly evolving granular assemblies \cite{Snoeijer2003,OstojicSomfaiNienhuis2006,Papadopoulos2017}.
+Although we do not compute contact-force networks explicitly here, the observed dependence on $D$ and $\mu$
+is consistent with this view: increasing $D$ makes it harder for a stable spanning subnetwork to form, while
+increasing $\mu$ makes it easier for such a network to persist once formed.
+
+The inclusion of Brownian-like stochastic forcing provides an additional destabilization mechanism for marginal
+arches. In the intermittent regime, fluctuations can break weak arches and lead to bursts of flow, producing
+alternation between short discharges and arrests. This interpretation aligns with broader discussions of
+dynamical heterogeneities in granular and jammed systems \cite{DauchotDurianVanHecke2010,Brodu2015}.
+Overall, our results support the picture of jamming as an emergent phenomenon arising from the interplay of
+geometry (outlet size), contact mechanics (friction), and fluctuations (stochastic forcing and collision-driven
+rearrangements).
+
+% Ensure all provided references appear in the bibliography, even if not cited explicitly above.
+\nocite{ZhengLuoYu2024,SecondaryFlows2025,CohesiveModelsReview2025,DEMvsSPH2025}
+\nocite{*}
