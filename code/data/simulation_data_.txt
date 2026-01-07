@@ -1,0 +1,26 @@
+results = [
+{'D': 0.06, 'mu': 0.0, 'jammed': True, 'exited': 1, 'N': 50, 'time': 'NA'},
+    {'D': 0.06, 'mu': 0.3, 'jammed': True, 'exited': 1, 'N': 50, 'time': 'NA'},
+    {'D': 0.06, 'mu': 0.6, 'jammed': True, 'exited': 1, 'N': 50, 'time': 'NA'},
+    {'D': 0.06, 'mu': 1.0, 'jammed': True, 'exited': 1, 'N': 50, 'time': 'NA'},
+
+    {'D': 0.12, 'mu': 0.0, 'jammed': True, 'exited': 2, 'N': 50, 'time': 'NA'},
+    {'D': 0.12, 'mu': 0.3, 'jammed': True, 'exited': 2, 'N': 50, 'time': 'NA'},
+    {'D': 0.12, 'mu': 0.6, 'jammed': True, 'exited': 2, 'N': 50, 'time': 'NA'},
+    {'D': 0.12, 'mu': 1.0, 'jammed': True, 'exited': 2, 'N': 50, 'time': 'NA'},
+
+    {'D': 0.18, 'mu': 0.0, 'jammed': False, 'exited': 15, 'N': 50, 'time': 'NA'},
+    {'D': 0.18, 'mu': 0.3, 'jammed': False, 'exited': 18, 'N': 50, 'time': 'NA'},
+    {'D': 0.18, 'mu': 0.6, 'jammed': True, 'exited': 20, 'N': 50, 'time': 'NA'},
+    {'D': 0.18, 'mu': 1.0, 'jammed': True, 'exited': 5, 'N': 50, 'time': 'NA'},
+
+    {'D': 0.24, 'mu': 0.0, 'jammed': False, 'exited': 30, 'N': 50, 'time': 'NA'},
+    {'D': 0.24, 'mu': 0.3, 'jammed': False, 'exited': 35, 'N': 50, 'time': 'NA'},
+    {'D': 0.24, 'mu': 0.6, 'jammed': False, 'exited': 40, 'N': 50, 'time': 'NA'},
+    {'D': 0.24, 'mu': 1.0, 'jammed': True, 'exited': 10, 'N': 50, 'time': 'NA'},
+
+    {'D': 0.30, 'mu': 0.0, 'jammed': False, 'exited': 50, 'N': 50, 'time': 'NA'},
+    {'D': 0.30, 'mu': 0.3, 'jammed': False, 'exited': 60, 'N': 50, 'time': 'NA'},
+    {'D': 0.30, 'mu': 0.6, 'jammed': False, 'exited': 70, 'N': 50, 'time': 'NA'},
+    {'D': 0.30, 'mu': 1.0, 'jammed': False, 'exited': 80, 'N': 50, 'time': 'NA'}
+]
