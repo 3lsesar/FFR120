@@ -5,12 +5,14 @@ import matplotlib.animation as animation
 # =============================================================================
 # SIMULATION PARAMETERS
 # =============================================================================
+
 N = 50  # Number of particles
-R_mean = 0.06  # Mean particle radius (m)
+R_mean = 0.02  # Mean particle radius (m)
+D = 3 * R_mean  # Funnel opening width (m) (orifice diameter)
+max_steps = 100000  # Max steps per simulation in batch mode
 m = 1.0  # Particle mass (kg)
 g = 9.81  # Gravity (m/s^2)
 dt = 0.0001  # Time step (s)
-D = 3 * R_mean  # Funnel opening width (m) (orifice diameter)
 substeps = 50  # Integration substeps per frame
 
 # Contact force parameters
@@ -346,7 +348,7 @@ def update(frame):
     return [],
 
 # BATCH MODE FUNCTIONS
-def run_single_simulation(N_sim, R_sim, D_sim, mu_sim, size_noise_sim):
+def run_single_simulation(N_sim, R_sim, D_sim, mu_sim, size_noise_sim, max_steps_sim):
     """Run a single simulation without animation"""
     global N, R_mean, D, mu, enable_size_noise
     global x, y, vx, vy, R, active, contact_xi
@@ -384,7 +386,7 @@ def run_single_simulation(N_sim, R_sim, D_sim, mu_sim, size_noise_sim):
     initialize_particles_random()
     
     # Run simulation
-    max_steps = 50000
+    max_steps = max_steps_sim
     step = 0
     while (np.sum(active) > 0 and not is_jammed) and step < max_steps:
         update(None)
@@ -399,7 +401,7 @@ def run_single_simulation(N_sim, R_sim, D_sim, mu_sim, size_noise_sim):
         'N': N
     }
 
-def run_batch_simulations():
+def run_batch_simulations(max_steps=100000):
     """Run multiple simulations and collect statistics"""
     results = []
     
@@ -415,7 +417,7 @@ def run_batch_simulations():
             print(f"\nRunning {batch_n_sims} simulations with D={D_val:.3f}m, μ={mu_val:.2f}")
             
             for sim_idx in range(batch_n_sims):
-                result = run_single_simulation(N, R_mean, D_val, mu_val, enable_size_noise)
+                result = run_single_simulation(N, R_mean, D_val, mu_val, enable_size_noise, max_steps)
                 results.append(result)
                 
                 status = "JAMMED" if result['jammed'] else "Complete"
@@ -430,17 +432,17 @@ def run_batch_simulations():
 # =============================================================================
 # MAIN EXECUTION
 
-# TOGGLES
-enable_animation = True  # Set to False for batch mode (multiple runs with statistics)
-enable_noise = True      # Toggle Brownian motion on/off
-enable_size_noise = False  # Toggle particle size variation
-
-# Batch mode parameters (only used when enable_animation = False)
-batch_n_sims = 10  # Number of simulations per parameter combination
-batch_D_values = [0.06, 0.12, 0.18, 0.24]  # Orifice widths to test
-batch_mu_values = [0.2, 0.4, 0.6]  # Friction coefficients to test
-
 if __name__ == "__main__":
+
+    # TOGGLES
+    enable_animation = True  # Set to False for batch mode (multiple runs with statistics)
+    enable_noise = True      # Toggle Brownian motion on/off
+    enable_size_noise = False  # Toggle particle size variation
+
+    # Batch mode parameters (only used when enable_animation = False)
+    batch_n_sims = 10  # Number of simulations per parameter combination
+    batch_D_values = [0.06, 0.12, 0.18, 0.24]  # Orifice widths to test
+    batch_mu_values = [0.2, 0.4, 0.6]  # Friction coefficients to test
     
     if enable_animation:
         # ANIMATION MODE - Single run with visualization
@@ -481,8 +483,9 @@ if __name__ == "__main__":
         plt.show()
         
     else:
+        R_mean = 0.06 # Mean particle radius (m)
         # BATCH MODE - Multiple runs with statistics
-        results = run_batch_simulations()
+        results = run_batch_simulations(max_steps=max_steps)
 
         # Save results to file
         with open("simulation_data.txt", "w") as f:

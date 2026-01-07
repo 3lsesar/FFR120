@@ -83,7 +83,7 @@ for D in selected_D:
         removed_mu_multi[D]['removed'].append(rem)
 
 # --- 5) Remaining discs vs mu (para un D fijo, ejemplo primer D) ---
-D_fixed = D_values[0]
+D_fixed = D_values[2]
 mu_range = sorted(list(set([r['mu'] for r in results if r['D']==D_fixed])))
 remaining = []
 for mu in mu_range:
@@ -119,93 +119,102 @@ data = {
 def plot_jamD(D_values, jamD_prob, jamD_removed):
     # Jam probability vs D plot
     plt.figure()
-    plt.plot(D_values, jamD_prob, marker='o')
-    plt.xlabel('Orifice width D')
-    plt.ylabel('Jam probability (mu=0.6)')
-    plt.title('Jam probability vs Orifice width (mu=0.6)')
+    plt.plot(D_values, [p*100 for p in jamD_prob], marker='o')
+    plt.xlabel('Orifice width D (mm)', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Jam probability (%)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_jam_vs_D_friction_updated.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
     # Removed discs vs D plot
     plt.figure()
     plt.plot(D_values, jamD_removed, marker='o')
-    plt.xlabel('Orifice width D')
-    plt.ylabel('Mean discs removed (mu=0.6)')
-    plt.title('Discs removed vs Orifice width (mu=0.6)')
+    plt.xlabel('Orifice width D (mm)', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Mean discs removed (#)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_removed_vs_D_friction_updated.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
 def plot_jamMu(mu_values, jamMu_prob, jamMu_removed):
     plt.figure()
-    plt.plot(mu_values, jamMu_prob, marker='o')
-    plt.xlabel('Friction coefficient mu')
-    plt.ylabel('Jam probability')
-    plt.title('Jam probability vs Friction coefficient (D=0.06)')
+    plt.plot(mu_values, [p*100 for p in jamMu_prob], marker='o')
+    plt.xlabel('Friction coefficient mu', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Jam probability (%)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_jam_vs_mu.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
     plt.figure()
     plt.plot(mu_values, jamMu_removed, marker='o')
-    plt.xlabel('Friction coefficient mu')
-    plt.ylabel('Mean discs removed')
-    plt.title('Discs removed vs Friction coefficient (D=0.06)')
+    plt.xlabel('Friction coefficient mu', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Mean discs removed (#)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_removed_vs_mu.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
 def plot_jamDnoise(D_values, jamDnoisy_prob, jamDnoisy_removed):
     plt.figure()
-    plt.plot(D_values, jamDnoisy_prob, marker='o')
-    plt.xlabel('Orifice width D')
-    plt.ylabel('Jam probability (mu=0.6, noisy)')
-    plt.title('Jam probability vs D with radius noise (mu=0.6)')
+    plt.plot(D_values, [p*100 for p in jamDnoisy_prob], marker='o')
+    plt.xlabel('Orifice width D (mm)', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Jam probability (%)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_jam_vs_D_noise.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
     plt.figure()
     plt.plot(D_values, jamDnoisy_removed, marker='o')
-    plt.xlabel('Orifice width D')
-    plt.ylabel('Mean discs removed (mu=0.6, noisy)')
-    plt.title('Discs removed vs D with radius noise (mu=0.6)')
+    plt.xlabel('Orifice width D (mm)', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Mean discs removed (#)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_removed_vs_D_noise.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
 def plot_multipleD(selected_D, mu_values, jamMu_data, removed_data):
     plt.figure()
     for D in selected_D:
-        plt.plot(mu_values, jamMu_data[D]['prob'], marker='o', label=f'D={D:.2f}')
-    plt.xlabel('Friction coefficient mu')
-    plt.ylabel('Jam probability')
-    plt.title('Jam probability vs mu for multiple D')
+        plt.plot(mu_values, [p*100 for p in jamMu_data[D]['prob']], marker='o', label=f'D={D:.2f}')
+    plt.xlabel('Friction coefficient mu', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Jam probability (%)', fontsize=17)  # tamaño letra eje Y
     plt.legend()
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_jam_vs_mu_multiple_D_updated.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
     plt.figure()
     for D in selected_D:
         plt.plot(mu_values, removed_data[D]['removed'], marker='o', label=f'D={D:.2f}')
-    plt.xlabel('Friction coefficient mu')
-    plt.ylabel('Mean discs removed')
-    plt.title('Discs removed vs mu for multiple D')
+    plt.xlabel('Friction coefficient mu', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Mean discs removed (#)', fontsize=17)  # tamaño letra eje Y
     plt.legend()
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_removed_vs_mu_multiple_D_updated.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
 def plot_remainingDiscs(mu_values, remaining_data):
     plt.figure()
     plt.plot(mu_values, remaining_data, marker='o')
-    plt.xlabel('Friction coefficient mu')
-    plt.ylabel('Discs remaining in silo')
-    plt.title('Remaining discs vs friction coefficient')
+    plt.xlabel('Friction coefficient mu', fontsize=17)  # tamaño letra eje X
+    plt.ylabel('Discs remaining in silo (#)', fontsize=17)  # tamaño letra eje Y
     plt.grid(True)
     plt.savefig(f"{save_dir}/md_friction_vs_remaining.png")
+    plt.xticks(fontsize=12)  # tamaño letra números eje X
+    plt.yticks(fontsize=12)  # tamaño letra números eje Y
     plt.show()
 
 if __name__ == "__main__":
